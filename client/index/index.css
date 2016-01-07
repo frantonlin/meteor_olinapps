@@ -1,0 +1,73 @@
+nav .brand-logo {
+    /*font-family: "PT Sans Narrow";*/
+    font-size: 26px;
+    /*letter-spacing: 1px;*/
+    font-weight: 300;
+}
+nav .brand-logo .emph {
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+nav ul a {
+    font-weight: 300;
+}
+
+.modal {
+    width:360px;
+}
+
+.modal .modal-content {
+    /*padding-bottom: 0;*/
+    padding: 16px 24px;
+}
+
+.modal .row {
+    margin-bottom: 0;
+}
+
+.modal .validate {
+    margin-bottom: 5px;
+}
+
+.modal .checkbox {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.login-button-wrapper {
+    padding: 5px;
+    height: 48px;
+}
+
+.login-button-wrapper #submitButton {
+    float: right;
+}
+
+.login-button-wrapper .left-wrapper {
+    float: left;
+    width: 47%;
+}
+
+.login-button-wrapper .left-wrapper a {
+    width: 100%;
+    margin: 5px;
+    text-align: center;
+}
+
+.login-button-wrapper .right-wrapper{
+    float: right;
+    width: 47%;
+}
+
+.login-button-wrapper .right-wrapper button{
+    width: 100%;
+    margin: 5px;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
