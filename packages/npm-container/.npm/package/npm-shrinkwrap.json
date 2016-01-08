@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "fibers": {
+      "version": "1.0.8"
+    },
+    "httpntlm": {
+      "version": "1.5.2",
+      "dependencies": {
+        "agentkeepalive": {
+          "version": "2.0.3"
+        },
+        "async": {
+          "version": "0.2.10"
+        },
+        "httpreq": {
+          "version": "0.4.16"
+        },
+        "underscore": {
+          "version": "1.7.0"
+        }
+      }
+    }
+  }
+}

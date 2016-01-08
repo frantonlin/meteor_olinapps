@@ -1,0 +1,45 @@
+@font-face {
+    font-family: Roboto;
+    src:local('Roboto Thin'), local('Roboto-Thin'),
+        url(/font/roboto/Roboto-Thin.eot) format(eot),
+        url(/font/roboto/Roboto-Thin.ttf) format(ttf),
+        url(/font/roboto/Roboto-Thin.woff) format(woff),
+        url(/font/roboto/Roboto-Thin.woff2) format(woff2);
+    font-weight: 100;
+}
+@font-face {
+    font-family: Roboto;
+    src:local('Roboto Light'), local('Roboto-Light'), 
+        url(/font/roboto/Roboto-Light.eot) format(eot),
+        url(/font/roboto/Roboto-Light.ttf) format(ttf),
+        url(/font/roboto/Roboto-Light.woff) format(woff),
+        url(/font/roboto/Roboto-Light.woff2) format(woff2);
+    font-weight: 300;
+}
+@font-face {
+    font-family: Roboto;
+    src:local('Roboto'), local('Roboto-Regular'),
+        url(/font/roboto/Roboto-Regular.eot) format(eot),
+        url(/font/roboto/Roboto-Regular.ttf) format(ttf),
+        url(/font/roboto/Roboto-Regular.woff) format(woff),
+        url(/font/roboto/Roboto-Regular.woff2) format(woff2);
+    font-weight: 400;
+}
+@font-face {
+    font-family: Roboto;
+    src:local('Roboto Medium'), local('Roboto-Medium'),
+        url(/font/roboto/Roboto-Medium.eot) format(eot),
+        url(/font/roboto/Roboto-Medium.ttf) format(ttf),
+        url(/font/roboto/Roboto-Medium.woff) format(woff),
+        url(/font/roboto/Roboto-Medium.woff2) format(woff2);
+    font-weight: 500;
+}
+@font-face {
+    font-family: Roboto;
+    src:local('Roboto Bold'), local('Roboto-Bold'),
+        url(/font/roboto/Roboto-Bold.eot) format(eot),
+        url(/font/roboto/Roboto-Bold.ttf) format(ttf),
+        url(/font/roboto/Roboto-Bold.woff) format(woff),
+        url(/font/roboto/Roboto-Bold.woff2) format(woff2);
+    font-weight: 700;
+}
