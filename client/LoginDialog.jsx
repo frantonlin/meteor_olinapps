@@ -44,7 +44,7 @@ LoginDialog = React.createClass({
     var password = this.refs.password.getValue();
     var remember = this.refs.remember.isChecked();
     
-    console.log("username: %s,   password: %s,   remember: %s", username, password, remember.toString());
+    // console.log("username: %s,   password: %s,   remember: %s", username, password, remember.toString());
     
     var validated = true;
     if (password == "") {
@@ -69,7 +69,7 @@ LoginDialog = React.createClass({
         }],
         validateResult: function (result) {
           //Custom validation of login on client side can go here
-          console.log(result);
+          // console.log(result);
         },
         userCallback: function(error) {
           if (error) {
@@ -77,8 +77,6 @@ LoginDialog = React.createClass({
           }
           
           // if no errors, we're done!
-          // console.log(this.LoginDialog.prototype);
-          console.log(this);
           LoginDialog.handleClose();
         }
       });
