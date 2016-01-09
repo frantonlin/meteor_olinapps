@@ -9,16 +9,14 @@ var {
     Checkbox,
     RefreshIndicator
     } = MUI;
-// let ThemeManager = Styles.ThemeManager;
-// var { ThemeManager} = Styles;
-// myTheme = this.context.muiTheme;
 
 LoginDialog = React.createClass({
   getInitialState() {
     return {
       open: false,
       passwordErrorText: "",
-      loading: false
+      loading: false,
+      loginErrorText: ""
     }
   },
   contextTypes: {
@@ -39,6 +37,10 @@ LoginDialog = React.createClass({
   setUsernameError() {
     this.refs.username.setUsernameError();
   },
+  setLoginError(text) {
+    this.setState({loginErrorText: text});
+    this.refs.username.focus();
+  },
   handleOpen() {
     this.setState({open: true});
   },
@@ -51,6 +53,8 @@ LoginDialog = React.createClass({
   }, 
   handleLogin(e) {
     e.preventDefault();
+    
+    this.setLoginError("");
     
     var username = this.refs.username.getValue();
     var password = this.refs.password.getValue();
@@ -71,37 +75,52 @@ LoginDialog = React.createClass({
     }
     
     if (validated) {
-      // // ATTEMPT LOGIN
-      // var LoginDialog = this;
-      // Accounts.callLoginMethod({
-      //   methodArguments: [
-      //   {
-      //     username: username,
-      //     password: password,
-      //   }],
-      //   validateResult: function (result) {
-      //     //Custom validation of login on client side can go here
-      //     // console.log(result);
-      //   },
-      //   userCallback: function(error) {
-      //     if (error) {
-      //       console.log(error);
-      //     }
-          
-      //     // if no errors, we're done!
-      //     LoginDialog.handleClose();
-      //   }
-      // });
+      // ATTEMPT LOGIN
+      var LoginDialog = this;
+      Accounts.callLoginMethod({
+        methodArguments: [
+        {
+          username: username,
+          password: password,
+        }],
+        validateResult: function (result) {
+          //Custom validation of login on client side can go here
+          // console.log(result);
+          LoginDialog.handleClose();
+          LoginDialog.handleClose();
+        },
+        userCallback: function(error) {
+          if (error) {
+            LoginDialog.handleClose();
+            switch (error.error) {
+              case 500: // httpntlm request failed, internal server error
+                console.log("500: Internal Server Error");
+                LoginDialog.setLoginError("something's broken...");
+                break;
+              case 400: // sent bad httpntlm request
+                console.log("400: Bad Request");
+                LoginDialog.setLoginError("something's broken...");
+                break;
+              case 401: // unauthorized
+                console.log("401: Unauthorized");
+                LoginDialog.setLoginError("invalid username/password");
+                break;
+              default: // something else?!?!
+                console.log(error);
+                LoginDialog.setLoginError("something's really broken...");
+            }
+          }
+        }
+      });
       this.setState({loading: true});
-      // this.handleClose();
+      // this.handleClose(); // FOR TESTING
+      // this.setLoginError("something's really broken..."); // FOR TESTING
     }
   },
   
   render () {
     const loadingSize = 60;
     let palette = this.context.muiTheme.baseTheme.palette;
-    
-    console.log(this.state.loading);
     
     const style = {
       dialog: {
@@ -111,12 +130,15 @@ LoginDialog = React.createClass({
         backgroundColor: "rgba(0,0,0,0.1)",
         borderRadius: "0",
         boxShadow: "none",
-        zIndex: this.state.loading ? "99":"0",
+        zIndex: this.state.loading ? "99":"-1",
         width: "100%",
         height: "100%",
         padding: (224/2-loadingSize/2+loadingSize/10)+"px "+
             (360/2-loadingSize/2+loadingSize/10)+"px",
         transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms"
+      },
+      checkbox : {
+        margin: '10px 0 20px 0'
       },
       cancelButton : {
         width: '49%',
@@ -127,15 +149,18 @@ LoginDialog = React.createClass({
         width: '49%',
         float: 'right'
       },
-      checkbox : {
-        margin: '10px 0 20px 0'
+      loginError: {
+        display: 'inline-block',
+        position: 'relative',
+        color: this.context.muiTheme.textField.errorColor,
+        fontSize: '12px',
+        paddingBottom: '3px',
+        paddingTop: '10px'
       }
     }
     
     return (
       <Dialog
-          // title="Dialog With Actions"
-          // actions={actions}
           modal={false}
           contentStyle={style.dialog}
           open={this.state.open}
@@ -148,6 +173,7 @@ LoginDialog = React.createClass({
             status={this.state.loading ? "loading":"hide"}
             style={style.loading}/>
         <form className="login-form" onSubmit={this.handleLogin}>
+          <span style={style.loginError}>{this.state.loginErrorText}</span>
           <Username ref="username" disabled={this.state.loading} />
           <TextField name="password" ref="password"
               type="password" hintText="password"

@@ -47,7 +47,7 @@ HomePage = React.createClass({
           </Card>
         :
           <div>
-            <h2>You are not logged in so there is nothing to display</h2>
+            <h2>You are not logged in, so there is nothing to display.</h2>
           </div>
         }
       </div>
@@ -81,6 +81,7 @@ Header = React.createClass({
     };
     return (
       <div>
+        <LoginDialog ref="loginDialog" />
         { this.data.currentUser ?
           <AppBar 
               iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
@@ -98,22 +99,19 @@ Header = React.createClass({
               } 
           /> 
         :
-          <div>
-            <LoginDialog ref="loginDialog" />
-            <AppBar 
-                iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
-                title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>}
-                iconElementRight={
-                  <span className="header-buttons">
-                    <FlatButton label="Login" style={buttonStyle}
-                        hoverColor="rgba(255,255,255,0.42)"
-                        rippleColor="rgba(255,255,255,0.58)"
-                        onTouchTap={this.openLoginDialog} />
-                    
-                  </span>
-                }
-            />
-          </div>
+          <AppBar 
+              iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
+              title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>}
+              iconElementRight={
+                <span className="header-buttons">
+                  <FlatButton label="Login" style={buttonStyle}
+                      hoverColor="rgba(255,255,255,0.42)"
+                      rippleColor="rgba(255,255,255,0.58)"
+                      onTouchTap={this.openLoginDialog} />
+                  
+                </span>
+              }
+          />
         }
       </div>
     );

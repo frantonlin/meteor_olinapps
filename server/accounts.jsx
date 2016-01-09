@@ -9,8 +9,8 @@ Accounts.registerLoginHandler(function(loginRequest) {
 
   // just checking again
   if (userinfo.error) {
-    console.log(userinfo.error);
-    return userinfo;
+    // console.log(userinfo.error);
+    return {error: userinfo.error};
   } else {
     var userId = null;
     var user = Meteor.users.findOne({username: userinfo.username});
@@ -28,10 +28,7 @@ Accounts.registerLoginHandler(function(loginRequest) {
     }
     // console.log(userinfo);
 
-    //sending token along with the userId
-    return {
-      userId: userId
-    };
+    return {userId: userId};
   }
   return {error: new Meteor.Error(500, "Something went terribly wrong")};
 });
@@ -65,13 +62,16 @@ networkLogin = function(domain, username, password) {
     body: wsdl,
     headers: {'Content-Type': 'text/xml; charset=utf-8'}
   }, function (err, res){
+    console.log(res);
+    // res.statusCode = 401; // ONLY UNCOMMENT FOR TESTING PURPOSES
+    
     var ret;
     if (err) {
       console.log(err);
-      ret = {"error": new Meteor.Error(500, err)};
+      ret = {error: err};
     } else if (res.statusCode != 200) {
-      console.log("Error - %d", res.statusCode);
-      ret = {"error": new Meteor.Error(res.statusCode, "Something went wrong with NTLM authentication")};
+      console.log("NTLM Error - %d", res.statusCode);
+      ret = {error: new Meteor.Error(res.statusCode, "Something went wrong with NTLM authentication")};
     } else {
       var ret = {
       "username": username,
