@@ -62,7 +62,7 @@ networkLogin = function(domain, username, password) {
     body: wsdl,
     headers: {'Content-Type': 'text/xml; charset=utf-8'}
   }, function (err, res){
-    console.log(res);
+    // console.log(res);
     // res.statusCode = 401; // ONLY UNCOMMENT FOR TESTING PURPOSES
     
     var ret;

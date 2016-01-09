@@ -60,7 +60,7 @@ LoginDialog = React.createClass({
     var password = this.refs.password.getValue();
     var remember = this.refs.remember.isChecked();
     
-    console.log("username: %s,   password: %s,   remember: %s", username, password, remember.toString());
+    // console.log("username: %s,   password: %s,   remember: %s", username, password, remember.toString());
     
     var validated = true;
     if (password == "") {
