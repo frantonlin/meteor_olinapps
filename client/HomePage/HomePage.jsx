@@ -13,7 +13,7 @@ var {
     CardHeader,
     Avatar
     } = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
+// var { ThemeManager, LightRawTheme } = Styles;
 
 let {SvgIcons} = MUI.Libs;
 
@@ -109,6 +109,7 @@ Header = React.createClass({
                         hoverColor="rgba(255,255,255,0.42)"
                         rippleColor="rgba(255,255,255,0.58)"
                         onTouchTap={this.openLoginDialog} />
+                    
                   </span>
                 }
             />

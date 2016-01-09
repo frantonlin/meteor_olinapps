@@ -6,18 +6,25 @@ var {
     FlatButton,
     Dialog,
     TextField,
-    Checkbox
+    Checkbox,
+    RefreshIndicator
     } = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
+// let ThemeManager = Styles.ThemeManager;
+// var { ThemeManager} = Styles;
+// myTheme = this.context.muiTheme;
 
 LoginDialog = React.createClass({
   getInitialState() {
     return {
       open: false,
       passwordErrorText: "",
-      remember: false
+      loading: false
     }
   },
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+  
   _handlePasswordChange(e) {
     if (e.target.value == "") {
       this.setPasswordError();
@@ -25,6 +32,7 @@ LoginDialog = React.createClass({
       this.setState({passwordErrorText: ""});
     }
   },
+  
   setPasswordError() {
     this.setState({passwordErrorText: "enter a password"});
   },
@@ -35,7 +43,11 @@ LoginDialog = React.createClass({
     this.setState({open: true});
   },
   handleClose() {
-    this.setState(this.getInitialState());
+    if (this.state.loading) {
+      this.setState({loading: false});
+    } else {
+      this.setState(this.getInitialState());
+    }
   }, 
   handleLogin(e) {
     e.preventDefault();
@@ -44,7 +56,7 @@ LoginDialog = React.createClass({
     var password = this.refs.password.getValue();
     var remember = this.refs.remember.isChecked();
     
-    // console.log("username: %s,   password: %s,   remember: %s", username, password, remember.toString());
+    console.log("username: %s,   password: %s,   remember: %s", username, password, remember.toString());
     
     var validated = true;
     if (password == "") {
@@ -59,67 +71,97 @@ LoginDialog = React.createClass({
     }
     
     if (validated) {
-      // ATTEMPT LOGIN
-      var LoginDialog = this;
-      Accounts.callLoginMethod({
-        methodArguments: [
-        {
-          username: username,
-          password: password,
-        }],
-        validateResult: function (result) {
-          //Custom validation of login on client side can go here
-          // console.log(result);
-        },
-        userCallback: function(error) {
-          if (error) {
-            console.log(error);
-          }
+      // // ATTEMPT LOGIN
+      // var LoginDialog = this;
+      // Accounts.callLoginMethod({
+      //   methodArguments: [
+      //   {
+      //     username: username,
+      //     password: password,
+      //   }],
+      //   validateResult: function (result) {
+      //     //Custom validation of login on client side can go here
+      //     // console.log(result);
+      //   },
+      //   userCallback: function(error) {
+      //     if (error) {
+      //       console.log(error);
+      //     }
           
-          // if no errors, we're done!
-          LoginDialog.handleClose();
-        }
-      });
+      //     // if no errors, we're done!
+      //     LoginDialog.handleClose();
+      //   }
+      // });
+      this.setState({loading: true});
       // this.handleClose();
     }
   },
   
   render () {
-    const dialogStyle = {
-      width: '360px'
-    };
-    const leftButtonStyle = {
-      width: '49%',
-      float: 'left'
-    };
-    const rightButtonStyle = {
-      width: '49%',
-      float: 'right'
-    };
-    const checkboxStyle = {
-      margin: '10px 0 20px 0'
-    };
+    const loadingSize = 60;
+    let palette = this.context.muiTheme.baseTheme.palette;
+    
+    console.log(this.state.loading);
+    
+    const style = {
+      dialog: {
+        width: '360px'
+      },
+      loading: {
+        backgroundColor: "rgba(0,0,0,0.1)",
+        borderRadius: "0",
+        boxShadow: "none",
+        zIndex: this.state.loading ? "99":"0",
+        width: "100%",
+        height: "100%",
+        padding: (224/2-loadingSize/2+loadingSize/10)+"px "+
+            (360/2-loadingSize/2+loadingSize/10)+"px",
+        transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms"
+      },
+      cancelButton : {
+        width: '49%',
+        float: 'left',
+        zIndex: '100'
+      },
+      loginButton: {
+        width: '49%',
+        float: 'right'
+      },
+      checkbox : {
+        margin: '10px 0 20px 0'
+      }
+    }
     
     return (
       <Dialog
-        // title="Dialog With Actions"
-        // actions={actions}
-        modal={false}
-        contentStyle={dialogStyle}
-        open={this.state.open}
-        onRequestClose={this.handleClose}>
+          // title="Dialog With Actions"
+          // actions={actions}
+          modal={false}
+          contentStyle={style.dialog}
+          open={this.state.open}
+          onRequestClose={this.handleClose}>
+        <RefreshIndicator
+            size={loadingSize}
+            left={0}
+            top={0}
+            loadingColor={palette.accent1Color}
+            status={this.state.loading ? "loading":"hide"}
+            style={style.loading}/>
         <form className="login-form" onSubmit={this.handleLogin}>
-          <Username ref="username"/>
+          <Username ref="username" disabled={this.state.loading} />
           <TextField name="password" ref="password"
-              type="password" hintText="password" 
+              type="password" hintText="password"
+              disabled={this.state.loading} 
               errorText={this.state.passwordErrorText} 
               onChange={this._handlePasswordChange} fullWidth={true} />
           <Checkbox name="remember" ref="remember"
-              label="remember me" style={checkboxStyle} />
+              label="remember me" disabled={this.state.loading} 
+              style={style.checkbox} />
           <FlatButton label="Cancel" onTouchTap={this.handleClose} 
-              style={leftButtonStyle} />
+              style={style.cancelButton} />
           <RaisedButton label="Login" type="submit"
-              primary={true} style={rightButtonStyle} />
+              primary={true} disabled={this.state.loading}
+              style={style.loginButton} />
         </form>
       </Dialog>
     );
@@ -133,6 +175,9 @@ Username = React.createClass ({
       usernameErrorText: ""
     }
   },
+  componentDidMount() {
+    this.focus();
+  },
   _handleUsernameChange(e) {
     if (e.target.value == "" || !/^[a-zA-Z0-9]+$/.test(e.target.value)) {
       this.setUsernameError();
@@ -142,9 +187,6 @@ Username = React.createClass ({
   },
   setUsernameError() {
     this.setState({usernameErrorText: "enter a valid username"});
-  },
-  componentDidMount() {
-    this.focus();
   },
   getValue() {
     return this.refs.username.getValue();
@@ -156,6 +198,7 @@ Username = React.createClass ({
     return (
       <TextField name="username" ref="username"
           type="text" hintText="username" 
+          disabled={this.props.disabled}
           errorText={this.state.usernameErrorText} 
           onChange={this._handleUsernameChange} fullWidth={true} />
     );
