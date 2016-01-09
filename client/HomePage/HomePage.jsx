@@ -11,7 +11,8 @@ var {
     FlatButton,
     Card,
     CardHeader,
-    Avatar
+    Avatar,
+    EnhancedButton
     } = MUI;
 // var { ThemeManager, LightRawTheme } = Styles;
 
@@ -79,12 +80,29 @@ Header = React.createClass({
       color: 'white',
       margin: '0 5px'
     };
+    const iconSize = 24;
+    const iconStyle = {
+      position: 'relative',
+      boxSizing: 'border-box',
+      transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+      padding: iconSize / 2,
+      width: iconSize * 2,
+      height: iconSize * 2,
+      fontSize: 0
+    }
     return (
       <div>
         <LoginDialog ref="loginDialog" />
         { this.data.currentUser ?
           <AppBar 
-              iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
+              iconElementLeft={
+                <EnhancedButton centerRipple={true} 
+                    disableFocusRipple={true} touchRippleColor="#fff" 
+                    touchRippleOpacity={0.4} style={iconStyle}>
+                  <SvgIcons.ActionHome color="#fff"/>
+                </EnhancedButton>
+              }
+              // iconElementLeft={<IconButton><SvgIcons.ActionHome/></IconButton>}
               title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>} 
               iconElementRight={
                 <span className="header-buttons">
@@ -100,7 +118,14 @@ Header = React.createClass({
           /> 
         :
           <AppBar 
-              iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
+              iconElementLeft={
+                <EnhancedButton centerRipple={true} 
+                    disableFocusRipple={true} touchRippleColor="#fff" 
+                    touchRippleOpacity={0.4} style={iconStyle}>
+                  <SvgIcons.ActionHome color="#fff"/>
+                </EnhancedButton>
+              }
+              // iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
               title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>}
               iconElementRight={
                 <span className="header-buttons">
