@@ -11,9 +11,10 @@ var {
     FlatButton,
     Card,
     CardHeader,
-    Avatar
+    Avatar,
+    EnhancedButton
     } = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
+// var { ThemeManager, LightRawTheme } = Styles;
 
 let {SvgIcons} = MUI.Libs;
 
@@ -47,7 +48,7 @@ HomePage = React.createClass({
           </Card>
         :
           <div>
-            <h2>You are not logged in so there is nothing to display</h2>
+            <h2>You are not logged in, so there is nothing to display.</h2>
           </div>
         }
       </div>
@@ -79,11 +80,29 @@ Header = React.createClass({
       color: 'white',
       margin: '0 5px'
     };
+    const iconSize = 24;
+    const iconStyle = {
+      position: 'relative',
+      boxSizing: 'border-box',
+      transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+      padding: iconSize / 2,
+      width: iconSize * 2,
+      height: iconSize * 2,
+      fontSize: 0
+    };
     return (
       <div>
+        <LoginDialog ref="loginDialog" />
         { this.data.currentUser ?
           <AppBar 
-              iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
+              iconElementLeft={
+                <EnhancedButton centerRipple={true} 
+                    disableFocusRipple={true} touchRippleColor="#fff" 
+                    touchRippleOpacity={0.4} style={iconStyle}>
+                  <SvgIcons.ActionHome color="#fff"/>
+                </EnhancedButton>
+              }
+              // iconElementLeft={<IconButton><SvgIcons.ActionHome/></IconButton>}
               title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>} 
               iconElementRight={
                 <span className="header-buttons">
@@ -98,21 +117,26 @@ Header = React.createClass({
               } 
           /> 
         :
-          <div>
-            <LoginDialog ref="loginDialog" />
-            <AppBar 
-                iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
-                title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>}
-                iconElementRight={
-                  <span className="header-buttons">
-                    <FlatButton label="Login" style={buttonStyle}
-                        hoverColor="rgba(255,255,255,0.42)"
-                        rippleColor="rgba(255,255,255,0.58)"
-                        onTouchTap={this.openLoginDialog} />
-                  </span>
-                }
-            />
-          </div>
+          <AppBar 
+              iconElementLeft={
+                <EnhancedButton centerRipple={true} 
+                    disableFocusRipple={true} touchRippleColor="#fff" 
+                    touchRippleOpacity={0.4} style={iconStyle}>
+                  <SvgIcons.ActionHome color="#fff"/>
+                </EnhancedButton>
+              }
+              // iconElementLeft={<IconButton><SvgIcons.ActionHome /></IconButton>}
+              title={<span className="brand-logo">Olin<span className="emph">Apps</span></span>}
+              iconElementRight={
+                <span className="header-buttons">
+                  <FlatButton label="Login" style={buttonStyle}
+                      hoverColor="rgba(255,255,255,0.42)"
+                      rippleColor="rgba(255,255,255,0.58)"
+                      onTouchTap={this.openLoginDialog} />
+                  
+                </span>
+              }
+          />
         }
       </div>
     );
