@@ -124,7 +124,10 @@ LoginDialog = React.createClass({
     
     const style = {
       dialog: {
-        width: '360px'
+        width: '320px'
+      },
+      dialogBody: {
+        minHeight: '176px'
       },
       loading: {
         backgroundColor: "rgba(0,0,0,0.1)",
@@ -134,7 +137,7 @@ LoginDialog = React.createClass({
         width: "100%",
         height: "100%",
         padding: (224/2-loadingSize/2+loadingSize/10)+"px "+
-            (360/2-loadingSize/2+loadingSize/10)+"px",
+            (320/2-loadingSize/2+loadingSize/10)+"px",
         transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms"
       },
       checkbox : {
@@ -163,7 +166,9 @@ LoginDialog = React.createClass({
       <Dialog
           modal={false}
           contentStyle={style.dialog}
+          bodyStyle={style.dialogBody}
           open={this.state.open}
+          autoDetectWindowHeight={true}
           onRequestClose={this.handleClose}>
         <RefreshIndicator
             size={loadingSize}
@@ -179,7 +184,8 @@ LoginDialog = React.createClass({
               type="password" hintText="password"
               disabled={this.state.loading} 
               errorText={this.state.passwordErrorText} 
-              onChange={this._handlePasswordChange} fullWidth={true} />
+              onChange={this._handlePasswordChange} 
+              fullWidth={true} />
           <Checkbox name="remember" ref="remember"
               label="remember me" disabled={this.state.loading} 
               style={style.checkbox} />
@@ -226,7 +232,10 @@ Username = React.createClass ({
           type="text" hintText="username" 
           disabled={this.props.disabled}
           errorText={this.state.usernameErrorText} 
-          onChange={this._handleUsernameChange} fullWidth={true} />
+          onChange={this._handleUsernameChange} 
+          fullWidth={true} spellCheck="false" 
+          autoCorrect="off" autoComplete="off" 
+          autoCapitalize="off" />
     );
   }
 });

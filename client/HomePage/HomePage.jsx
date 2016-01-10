@@ -27,7 +27,7 @@ HomePage = React.createClass({
   },
   render () {
     return (
-      <div style={{padding: '80px',}}>
+      <div style={{padding: '40px',}}>
         {this.data.currentUser ?
           <Card>
             <CardHeader
