@@ -12,7 +12,8 @@ var {
     Card,
     CardHeader,
     Avatar,
-    EnhancedButton
+    EnhancedButton,
+    Paper
     } = MUI;
 // var { ThemeManager, LightRawTheme } = Styles;
 
@@ -26,31 +27,64 @@ HomePage = React.createClass({
     }
   },
   render () {
+    const itemStyle = {
+      height: 160,
+      width: 160,
+      margin: 10,
+      textAlign: 'center',
+      display: 'table',
+    };
+    const paperTextStyle = {
+      display: 'table-cell',
+      verticalAlign: 'middle'
+    }
     return (
-      <div style={{padding: '40px',}}>
-        {this.data.currentUser ?
-          <Card>
-            <CardHeader
-                title={this.data.currentUser.profile.name}
-                subtitle={this.data.currentUser.profile.department+", "+this.data.currentUser.profile.jobtitle}
-                avatar={<Avatar style={{color: 'teal'}}>{this.data.currentUser.profile.name.charAt(0)}</Avatar>}/>
-            <ul>
-              <li>_id: {this.data.currentUser._id}</li>
-              <li>username: {this.data.currentUser.username}</li>
-              <li>email: {this.data.currentUser.emails[0].email}</li>
-              <li>profile:</li>
-              <ul>
-                <li>name: {this.data.currentUser.profile.name}</li>
-                <li>department: {this.data.currentUser.profile.department}</li>
-                <li>jobtitle: {this.data.currentUser.profile.jobtitle}</li>
-              </ul>
-            </ul>
-          </Card>
-        :
-          <div>
-            <h2>You are not logged in, so there is nothing to display.</h2>
-          </div>
-        }
+      <div className='container'>
+        <div className='col-sm-offset-1 col-sm-10'>
+          {this.data.currentUser ?
+            <div style={{padding: '20px 0'}}>
+              <Card>
+                <CardHeader
+                    title={this.data.currentUser.profile.name}
+                    subtitle={this.data.currentUser.profile.department+", "+this.data.currentUser.profile.jobtitle}
+                    avatar={<Avatar style={{color: 'teal'}}>{this.data.currentUser.profile.name.charAt(0)}</Avatar>}/>
+                <ul>
+                  <li>_id: {this.data.currentUser._id}</li>
+                  <li>username: {this.data.currentUser.username}</li>
+                  <li>email: {this.data.currentUser.emails[0].email}</li>
+                  <li>profile:</li>
+                  <ul>
+                    <li>name: {this.data.currentUser.profile.name}</li>
+                    <li>department: {this.data.currentUser.profile.department}</li>
+                    <li>jobtitle: {this.data.currentUser.profile.jobtitle}</li>
+                  </ul>
+                </ul>
+              </Card>
+            </div>
+          :
+            // <div>
+            //   <h2>You are not logged in, so there is nothing to display.</h2> 
+            // </div>
+            <div>
+              <h1>Things</h1>
+              <div className='row'>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHEEEE</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHEEEE</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHEEEE</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHEEEE</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHEEEE</h2></Paper>
+              </div>
+              <h1>More Things</h1>
+              <div className='row'>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHOAAAA</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHOAAAA</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHOAAAA</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHOAAAA</h2></Paper>
+                <Paper style={itemStyle}><h2 style={paperTextStyle}>WHOAAAA</h2></Paper>
+              </div>
+            </div>
+          }
+        </div>
       </div>
     );
   }
