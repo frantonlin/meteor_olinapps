@@ -89,7 +89,7 @@ Header = React.createClass({
       width: iconSize * 2,
       height: iconSize * 2,
       fontSize: 0
-    }
+    };
     return (
       <div>
         <LoginDialog ref="loginDialog" />
