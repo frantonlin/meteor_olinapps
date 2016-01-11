@@ -129,6 +129,10 @@ LoginDialog = React.createClass({
       dialogBody: {
         minHeight: '176px'
       },
+      loginForm: {
+        padding: '0 10px',
+        marginTop: '-10px'
+      },
       loading: {
         backgroundColor: "rgba(0,0,0,0.1)",
         borderRadius: "0",
@@ -177,7 +181,7 @@ LoginDialog = React.createClass({
             loadingColor={palette.accent1Color}
             status={this.state.loading ? "loading":"hide"}
             style={style.loading}/>
-        <form className="login-form" onSubmit={this.handleLogin}>
+        <form onSubmit={this.handleLogin} style={style.loginForm}>
           <span style={style.loginError}>{this.state.loginErrorText}</span>
           <Username ref="username" disabled={this.state.loading} />
           <TextField name="password" ref="password"
