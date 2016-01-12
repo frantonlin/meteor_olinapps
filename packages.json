@@ -1,5 +1,4 @@
 {
   "httpntlm": "1.5.2",
-  "fibers": "1.0.8",
-  "flexboxgrid": "6.3.0"
+  "fibers": "1.0.8"
 }

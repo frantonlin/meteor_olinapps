@@ -22,13 +22,16 @@ accounts-base
 fortawesome:fontawesome
 kadira:flow-router
 kadira:react-layout
-meteorhacks:npm
 
 
-npm-container
 react
 
 # added to fix deploy bug
 react-runtime@=0.14.3
 kadira:dochead
 izzilab:material-ui
+meteorhacks:npm
+
+
+npm-container
+erasaur:meteor-lodash

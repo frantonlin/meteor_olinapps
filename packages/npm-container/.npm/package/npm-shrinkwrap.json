@@ -3,9 +3,6 @@
     "fibers": {
       "version": "1.0.8"
     },
-    "flexboxgrid": {
-      "version": "6.3.0"
-    },
     "httpntlm": {
       "version": "1.5.2",
       "dependencies": {

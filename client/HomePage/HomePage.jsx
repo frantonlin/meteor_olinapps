@@ -6,8 +6,13 @@ var {
     Card,
     CardHeader,
     Avatar,
-    CardTitle
+    CardTitle,
+    IconButton,
+    GridList,
+    GridTile
     } = MUI;
+
+let {SvgIcons} = MUI.Libs;
 
 HomePage = React.createClass({
   mixins: [ReactMeteorData],
@@ -19,7 +24,9 @@ HomePage = React.createClass({
   render () {
     const style = {
       tile: {
-        width: '100%', 
+        // width: '100%',
+        display: 'inline-block', 
+        margin: '5px',
         backgroundSize: 'cover',
         WebkitBoxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)',
         MozBoxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)',
@@ -30,39 +37,39 @@ HomePage = React.createClass({
     // images should be 460px squares
     const tilesData = [
       {
-        img: '/img/dashboard/owa.png',
-        title: 'Outlook Web App',
-        url: 'https://webmail.olin.edu/',
+        'img': '/img/dashboard/owa.png',
+        'title': 'Outlook Web App',
+        'url': 'https://webmail.olin.edu/',
       },
       {
-        img: '/img/dashboard/adastra.png',
-        title: 'Ad Astra',
-        url: 'http://scheduler.olin.edu/',
+        'img': '/img/dashboard/adastra.png',
+        'title': 'Ad Astra',
+        'url': 'http://scheduler.olin.edu/',
       },
       {
-        img: '/img/dashboard/photos.png',
-        title: 'Olin Images',
-        url: 'http://www.flickr.com/photos/olin/',
+        'img': '/img/dashboard/photos.png',
+        'title': 'Olin Images',
+        'url': 'http://www.flickr.com/photos/olin/',
       },
       {
-        img: '/img/dashboard/owa.png',
-        title: 'Dinner',
-        url: 'https://webmail.olin.edu/',
+        'img': '/img/dashboard/owa.png',
+        'title': 'Dinner',
+        'url': 'https://webmail.olin.edu/',
       },
       {
-        img: '/img/dashboard/adastra.png',
-        title: 'Midnight Snack',
-        url: 'https://webmail.olin.edu/',
+        'img': '/img/dashboard/adastra.png',
+        'title': 'Midnight Snack',
+        'url': 'https://webmail.olin.edu/',
       },
     ];
 
     const tileElements = tilesData.map(tile => 
-      <div className='col-xs-4 col-sm-4 col-md-3 col-lg-2' key={tile.title} style={{padding: '5px'}}>
-        <div style={Object.assign({backgroundImage: 'url('+tile.img+')'}, style.tile)}>
-          <a href={tile.url}><img src={tile.img} style={{width: '100%', opacity: '0'}}/></a>
+        <div key={tile.title} style={Object.assign({backgroundImage: 'url('+tile.img+')'}, style.tile)}>
+          <a href={tile.url}><img src={tile.img} style={{width: '200px', opacity: '0'}}/></a>
         </div>
-      </div>
     );
+    
+    const gridListStyle = {width: 500, height: 400, overflowY: 'auto', marginBottom: 24};
 
     return (
       <div className='container'>
@@ -91,12 +98,18 @@ HomePage = React.createClass({
             // <div>
             //   <h2>You are not logged in, so there is nothing to display.</h2> 
             // </div>
-            // NOTE TO SELF: USE MATERIAL-UI GRID LIST
             <div style={{padding: '20px 0'}}>
               <h2>External Resources</h2>
-                <div className='tile-container'>
-                  {tileElements}
-                </div>
+                <AbsoluteGrid 
+                    items={tilesData}
+                    displayObject={(<GridItem />)}
+                    dragEnabled={false}
+                    zoom={0.7}
+                    responsive={true}
+                    verticalMargin={42}
+                    itemWidth={200}
+                    itemHeight={200}
+                    />
             </div>
           }
         </div>
