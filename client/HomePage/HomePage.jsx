@@ -38,28 +38,38 @@ HomePage = React.createClass({
     const tilesData = [
       {
         'img': '/img/dashboard/owa.png',
-        'title': 'Outlook Web App',
+        'name': 'Outlook Web App',
         'url': 'https://webmail.olin.edu/',
+        'sort': 1,
+        'key': 1
       },
       {
         'img': '/img/dashboard/adastra.png',
-        'title': 'Ad Astra',
+        'name': 'Ad Astra',
         'url': 'http://scheduler.olin.edu/',
+        'sort': 2,
+        'key': 2
       },
       {
         'img': '/img/dashboard/photos.png',
-        'title': 'Olin Images',
+        'name': 'Olin Images',
         'url': 'http://www.flickr.com/photos/olin/',
+        'sort': 3,
+        'key': 3
       },
       {
         'img': '/img/dashboard/owa.png',
-        'title': 'Dinner',
+        'name': 'testing',
         'url': 'https://webmail.olin.edu/',
+        'sort': 4,
+        'key': 4
       },
       {
         'img': '/img/dashboard/adastra.png',
-        'title': 'Midnight Snack',
+        'name': '123',
         'url': 'https://webmail.olin.edu/',
+        'sort': 5,
+        'key': 5
       },
     ];
 
@@ -98,18 +108,18 @@ HomePage = React.createClass({
             // <div>
             //   <h2>You are not logged in, so there is nothing to display.</h2> 
             // </div>
-            <div style={{padding: '20px 0'}}>
+            <div>
               <h2>External Resources</h2>
-                <AbsoluteGrid 
-                    items={tilesData}
-                    displayObject={(<GridItem />)}
-                    dragEnabled={false}
-                    zoom={0.7}
-                    responsive={true}
-                    verticalMargin={42}
-                    itemWidth={200}
-                    itemHeight={200}
-                    />
+              <AbsoluteGrid 
+                  items={tilesData}
+                  displayObject={(<GridItem />)}
+                  dragEnabled={false}
+                  zoom={0.7}
+                  responsive={true}
+                  verticalMargin={28}
+                  itemWidth={200}
+                  itemHeight={200}
+                  />
             </div>
           }
         </div>

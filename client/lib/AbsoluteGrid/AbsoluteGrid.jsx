@@ -45,17 +45,6 @@ AbsoluteGrid = React.createClass({
     };
   },
 
-  // constructor(props, context){
-  //   super(props, context);
-  //   this.onResize = debounce(this.onResize, 150);
-  //   this.dragManager = new DragManager(this.props.onMove, this.props.keyProp);
-  //   this.state = {
-  //     layoutWidth: 0,
-  //     dragItemId: 0
-  //   };
-  //   console.log(this);
-  // }
-
   render() {
     if(!this.state.layoutWidth || !this.props.items.length){
       return <div ref={node => this.container = node}></div>;
@@ -154,8 +143,6 @@ AbsoluteGrid = React.createClass({
 
   getDOMWidth() {
     const width = this.container && this.container.clientWidth;
-    
-    console.log(this);
 
     if(this.state.layoutWidth !== width){
       this.setState({layoutWidth: width});

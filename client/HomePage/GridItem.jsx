@@ -14,25 +14,50 @@ let {SvgIcons} = MUI.Libs;
 
 GridItem = React.createClass({
   render () {
-    // const { title, img, url } = this.props;
+    const { name, img, url } = this.props.item;
     
     const style = {
-      // width: '100%',
-      display: 'block', 
-      width: '100%',
-      height: '100%',
-      backgroundSize: 'cover',
-      WebkitBoxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)',
-      MozBoxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)',
-      boxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)'
+      item: {
+        display: 'block', 
+        width: '100%',
+        height: '100%',
+        backgroundSize: '100%',
+        // WebkitBoxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)',
+        // MozBoxShadow: '0.5px 0.5px 8px rgba(0, 0, 0, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.05)',
+        boxShadow: 'inset 0 0 40px rgba(0, 0, 0, 0.05)'
+      },
+      name: {
+        display:'block',
+        bottom:'-14px',
+        width:'100%',
+        fontSize:'14px',
+        position:'absolute',
+        color:'#555',
+        textTransform:'capitalize',
+        textAlign: 'center'
+      }
     }
     
-    const gridListStyle = {width: 500, height: 400, overflowY: 'auto', marginBottom: 24};
+    // const itemStyle = {
+    //   display: 'block',
+    //   width: '100%',
+    //   height: '100%',
+    //   // backgroundImage: `url('${this.props.item.img}')`,
+    //   backgroundSize: '100%',
+    //   // boxShadow: '0 0 1.25em 0 rgba(0,0,0,.2)',
+    //   // backgroundColor:'#fff'
+    // };
 
     return (
-      <div key={this.props.item.title} style={Object.assign({backgroundImage: 'url('+this.props.item.img+')'}, style)}>
-        <a href={this.props.item.url}><img src={this.props.item.img} style={{width: '200px', opacity: '0'}}/></a>
-      </div>
+      <a href={url}>
+        <div className="gridItem" style={Object.assign({backgroundImage: 'url('+img+')'}, style.item)}>
+          <span style={style.name}>{name}</span>
+        </div>
+      </a>
     );
+    
+    // return <div
+    //         style={itemStyle}
+    //         className="gridItem"><span className="name">{this.props.item.name}</span></div>;
   }
 });
