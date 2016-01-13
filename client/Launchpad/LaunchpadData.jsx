@@ -67,7 +67,7 @@ LaunchpadData = [
       },
       {
         'img': null,
-        'name': 'ECE Stockroom Request',
+        'name': 'ECE Stockroom',
         'keywords': 'ECE Stockroom Request EE',
         'url': 'http://bit.ly/ece_stockroom'
       },

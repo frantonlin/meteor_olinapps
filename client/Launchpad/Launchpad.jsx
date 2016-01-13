@@ -33,7 +33,6 @@ Launchpad = React.createClass({
           var colors = ['amber', 'green', 'indigo', 'red'];
           item.img = '/img/geofont/' + colors[Math.floor((Math.random() * 4))] + 
               '/' + item.name.charAt(0).toUpperCase() + '.png';
-          console.log(item.img);
         }
       }
     }
@@ -92,6 +91,11 @@ Launchpad = React.createClass({
     }
   },
   
+  handleSearch(e) {
+    e.preventDefault();
+    this.refs.search.blur();
+  },
+  
   render () {
     const style = {
       searchPaper: {
@@ -127,11 +131,10 @@ Launchpad = React.createClass({
             zoom={1}
             responsive={true}
             verticalMargin={42}
-            itemWidth={130}
-            itemHeight={130}
+            itemWidth={128}
+            itemHeight={128}
             />
       </div>
-      
     );
 
     return (
@@ -163,10 +166,11 @@ Launchpad = React.createClass({
             <div>
               <Paper zDepth={1} style={style.searchPaper}>
                 <SvgIcons.ActionSearch opacity='0.5' style={{marginTop: '7px', float: 'left'}}/>
-                <div style={{overflow: 'auto', display: 'block', padding: '0 12px'}}>
-                  <input placeholder='Search' onChange={this.onFilter} 
-                      type='search' style={style.searchInput}/>
-                </div>
+                <form onSubmit={this.handleSearch} style={{overflow: 'auto', display: 'block', padding: '0 12px'}}>
+                  <input placeholder='Search' type='search' 
+                      onChange={this.onFilter}
+                      ref='search' style={style.searchInput} />
+                </form>
               </Paper>
               <div style={style.launchpadContainer}>
                 {launchpad}

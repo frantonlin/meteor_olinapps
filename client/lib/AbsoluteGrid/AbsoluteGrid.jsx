@@ -49,12 +49,19 @@ AbsoluteGrid = React.createClass({
     if(!this.state.layoutWidth || !this.props.items.length){
       return <div ref={node => this.container = node}></div>;
     }
+    
+    var zoom = this.props.zoom;
+    if (this.state.layoutWidth <= 320) {
+      zoom = this.props.zoom * 0.7;
+    } else if (this.state.layoutWidth <= 400) {
+      zoom = this.props.zoom * 0.8;
+    }
 
     const options = {
       itemWidth: this.props.itemWidth,
       itemHeight: this.props.itemHeight,
       verticalMargin: this.props.verticalMargin,
-      zoom: this.props.zoom
+      zoom: zoom
     };
 
     const layout = new LayoutManager(options, this.state.layoutWidth);
