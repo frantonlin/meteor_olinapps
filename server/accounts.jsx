@@ -21,10 +21,13 @@ Accounts.registerLoginHandler(function(loginRequest) {
         emails: [{email: userinfo.email, verified: true}],
         profile: {name: userinfo.dispname,
                   department: userinfo.department,
-                  jobtitle: userinfo.jobtitle}
+                  jobtitle: userinfo.jobtitle},
+        createdAt: new Date(),
+        lastLoginAt: new Date()
       });
     } else {
       userId = user._id;
+      Meteor.users.update({username: userinfo.username},{$set: {lastLoginAt: new Date()}})
     }
     // console.log(userinfo);
 
