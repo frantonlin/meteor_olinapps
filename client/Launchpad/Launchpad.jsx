@@ -104,12 +104,13 @@ Launchpad = React.createClass({
       searchInput: {
         color: '#434343',
         fontSize: '16px',
-        marginLeft: '20px',
-        padding: '8px 0',
-        backgrounColor: 'transparent',
+        backgroundColor: 'transparent',
         border: '0',
         outline: 'none',
-        width: '100%'
+        width: '100%',
+        // lineHeight: '2em',
+        padding: '8px 0',
+        WebkitAppearance: 'none'
       },
       launchpadContainer: {
         padding: (this.state.fixSearch ? '54':'10') + 'px 20px 10px 20px',
@@ -161,10 +162,10 @@ Launchpad = React.createClass({
             // </div>
             <div>
               <Paper zDepth={1} style={style.searchPaper}>
-                <SvgIcons.ActionSearch opacity='0.5' style={{position: 'relative', top: '6px', float: 'left'}}/>
-                <div style={{overflow: 'auto'}}>
+                <SvgIcons.ActionSearch opacity='0.5' style={{marginTop: '7px', float: 'left'}}/>
+                <div style={{overflow: 'auto', display: 'block', padding: '0 12px'}}>
                   <input placeholder='Search' onChange={this.onFilter} 
-                      type='text' style={style.searchInput}/>
+                      type='search' style={style.searchInput}/>
                 </div>
               </Paper>
               <div style={style.launchpadContainer}>

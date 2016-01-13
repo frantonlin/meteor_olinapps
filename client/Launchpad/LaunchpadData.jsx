@@ -196,12 +196,6 @@ LaunchpadData = [
       },
       {
         'img': null,
-        'name': 'Olin IT',
-        'keywords': 'Olin IT Information Technology helpdesk',
-        'url': 'http://wikis.olin.edu/it/'
-      },
-      {
-        'img': null,
         'name': 'Library',
         'keywords': 'Library',
         'url': 'http://library.olin.edu/'
@@ -217,6 +211,12 @@ LaunchpadData = [
         'name': 'Olin Gear',
         'keywords': 'Olin Gear',
         'url': 'http://olingear.olin.edu/'
+      },
+      {
+        'img': null,
+        'name': 'Olin IT',
+        'keywords': 'Olin IT Information Technology helpdesk',
+        'url': 'http://wikis.olin.edu/it/'
       },
       {
         'img': null,
