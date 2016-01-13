@@ -110,7 +110,7 @@ LaunchpadData = [
       {
         'img': '/img/dashboard/owa.png',
         'name': 'Webmail',
-        'keywords': 'Webmail email',
+        'keywords': 'Webmail Outlook Web Access email owa',
         'url': 'https://webmail.olin.edu/'
       },
       {

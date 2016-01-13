@@ -139,44 +139,40 @@ Launchpad = React.createClass({
 
     return (
       <div>
+        <div>
+          <Paper zDepth={1} style={style.searchPaper}>
+            <SvgIcons.ActionSearch opacity='0.5' style={{marginTop: '7px', float: 'left'}}/>
+            <form onSubmit={this.handleSearch} style={{overflow: 'auto', display: 'block', padding: '0 12px'}}>
+              <input placeholder='Search' type='search' 
+                  onChange={this.onFilter}
+                  ref='search' style={style.searchInput} />
+            </form>
+          </Paper>
+          <div style={style.launchpadContainer}>
+            {launchpad}
+          </div>
           {this.data.currentUser ?
-            <div style={{padding: '20px 0'}}>
-              <Card>
-                <CardHeader
-                    title={this.data.currentUser.profile.name}
-                    subtitle={this.data.currentUser.profile.department+", "+this.data.currentUser.profile.jobtitle}
-                    avatar={<Avatar style={{color: 'teal'}}>{this.data.currentUser.profile.name.charAt(0)}</Avatar>}/>
+            <Card>
+              <CardHeader
+                  title={this.data.currentUser.profile.name}
+                  subtitle={this.data.currentUser.profile.department+", "+this.data.currentUser.profile.jobtitle}
+                  avatar={<Avatar style={{color: 'teal'}}>{this.data.currentUser.profile.name.charAt(0)}</Avatar>}/>
+              <ul>
+                <li>_id: {this.data.currentUser._id}</li>
+                <li>username: {this.data.currentUser.username}</li>
+                <li>email: {this.data.currentUser.emails[0].email}</li>
+                <li>profile:</li>
                 <ul>
-                  <li>_id: {this.data.currentUser._id}</li>
-                  <li>username: {this.data.currentUser.username}</li>
-                  <li>email: {this.data.currentUser.emails[0].email}</li>
-                  <li>profile:</li>
-                  <ul>
-                    <li>name: {this.data.currentUser.profile.name}</li>
-                    <li>department: {this.data.currentUser.profile.department}</li>
-                    <li>jobtitle: {this.data.currentUser.profile.jobtitle}</li>
-                  </ul>
+                  <li>name: {this.data.currentUser.profile.name}</li>
+                  <li>department: {this.data.currentUser.profile.department}</li>
+                  <li>jobtitle: {this.data.currentUser.profile.jobtitle}</li>
                 </ul>
-              </Card>
-            </div>
+              </ul>
+            </Card>
           :
-            // <div>
-            //   <h2>You are not logged in, so there is nothing to display.</h2> 
-            // </div>
-            <div>
-              <Paper zDepth={1} style={style.searchPaper}>
-                <SvgIcons.ActionSearch opacity='0.5' style={{marginTop: '7px', float: 'left'}}/>
-                <form onSubmit={this.handleSearch} style={{overflow: 'auto', display: 'block', padding: '0 12px'}}>
-                  <input placeholder='Search' type='search' 
-                      onChange={this.onFilter}
-                      ref='search' style={style.searchInput} />
-                </form>
-              </Paper>
-              <div style={style.launchpadContainer}>
-                {launchpad}
-              </div>
-            </div>
+            null
           }
+        </div>
       </div>
     );
   }
