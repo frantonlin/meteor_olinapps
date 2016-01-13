@@ -22,7 +22,8 @@ LaunchpadData = [
         'img': null,
         'name': 'CORe',
         'keywords': 'CORe Council of Olin Representatives',
-        'url': 'http://core.olin.edu/wiki/CORe_Knowledge_Base'
+        'url': 'http://core.olin.edu/wiki/CORe_Knowledge_Base',
+        'networkLock': true
       },
       {
         'img': null,
@@ -57,7 +58,8 @@ LaunchpadData = [
         'img': '/img/dashboard/adastra.png',
         'name': 'Ad Astra',
         'keywords': 'Ad Astra AdAstra Scheduler',
-        'url': 'http://scheduler.olin.edu/'
+        'url': 'http://scheduler.olin.edu/', //'http://scheduler.olin.edu:8080/astraweb/index.jsp?id1=sched_sta&id2=0linsched'
+        'networkLock': true
       },
       {
         'img': null,
@@ -68,13 +70,19 @@ LaunchpadData = [
       {
         'img': null,
         'name': 'ECE Stockroom',
-        'keywords': 'ECE Stockroom Request EE',
+        'keywords': 'ECE Stockroom Request EE Form',
         'url': 'http://bit.ly/ece_stockroom'
       },
       {
         'img': null,
+        'name': 'Events Calendar',
+        'keywords': 'Events Calendar',
+        'url': 'http://www.olin.edu/events/event-calendar/'
+      },
+      {
+        'img': null,
         'name': 'Mailing Lists',
-        'keywords': 'Mailing Lists',
+        'keywords': 'Mailing Lists email',
         'url': 'http://lists.olin.edu/'
       },
       {
@@ -97,8 +105,8 @@ LaunchpadData = [
       },
       {
         'img': null,
-        'name': 'Parking Ticket Appeal',
-        'keywords': 'Parking Ticket Appeal',
+        'name': 'Parking Ticket Appeal Form',
+        'keywords': 'Parking Ticket Appeal Form',
         'url': 'http://www.babson.edu/offices-services/public-safety/parking/Pages/parking-violation-appeal.aspx'
       },
       {
@@ -180,7 +188,7 @@ LaunchpadData = [
         'img': null,
         'name': 'AHS',
         'keywords': 'AHS Arts Humanities and Social Sciences',
-        'url': 'url'
+        'url': 'http://ahs.olin.edu/'
       },
       {
         'img': null,

@@ -62,15 +62,19 @@ Launchpad = React.createClass({
     // filter for results by ANDing the keywords together
     // ^(?=.*\bWORD)(?=.*\bWORD).*$
     
-    var keywords = event.target.value.replace(/\s+/g,' ').trim().split(' ');
+    // replace extra whitespace with single space and strip leading space
+    var keywords = event.target.value.replace(/\s+/g,' ').replace(/^\s+/,'').split(' ');
     
     // not empty string or just spaces, so filter
     if (keywords[0] !== "") {
       var regex = '^';
-      for (var wordIndex in keywords) {
-        regex += '(?=.*\\b' + keywords[wordIndex] + ')';
+      for (var i = 0; i < keywords.length-1; i++) {
+        // force text followed by space to match whole words
+        regex += '(?=.*\\b' + keywords[i] + '\\b)';
       }
-      regex += '.*$';
+      // last text (not followed by space) can be incomplete word
+      regex += '(?=.*\\b' + keywords[keywords.length-1] + ').*$';
+      // console.log(keywords + ' | ' + regex);
     
       var search = new RegExp(regex, 'i');
       for (var groupIndex in LaunchpadData) {
