@@ -29,6 +29,12 @@ Launchpad = React.createClass({
         var item = LaunchpadData[groupIndex].items[itemIndex];
         item.sort = itemIndex;
         item.key = itemIndex;
+        if (!item.img) {
+          var colors = ['amber', 'green', 'indigo', 'red'];
+          item.img = '/img/geofont/' + colors[Math.floor((Math.random() * 4))] + 
+              '/' + item.name.charAt(0).toUpperCase() + '.png';
+          console.log(item.img);
+        }
       }
     }
     return {
