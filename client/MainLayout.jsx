@@ -61,7 +61,7 @@ MainLayout = React.createClass({
     return ( 
       <AppCanvas>
         {this.props.header()}
-          
+        
         {this.props.content()}
 
         <footer>
