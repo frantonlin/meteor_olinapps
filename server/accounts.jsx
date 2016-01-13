@@ -5,7 +5,7 @@ var Future = Npm.require( 'fibers/future' );
 Accounts.registerLoginHandler(function(loginRequest) {
 
   // authentication logic
-  var userinfo = networkLogin("MILKYWAY", loginRequest.username, loginRequest.password);
+  var userinfo = networkLogin("MILKYWAY", loginRequest.username.toString().toLowerCase(), loginRequest.password);
 
   // just checking again
   if (userinfo.error) {
@@ -34,7 +34,7 @@ Accounts.registerLoginHandler(function(loginRequest) {
 });
 
 // NTLM authentication through webmail using SOAP
-networkLogin = function(domain, username, password) {
+var networkLogin = function(domain, username, password) {
   var url = "https://webmail.olin.edu/ews/exchange.asmx";
   var wsdl = `<?xml version="1.0" encoding="utf-8"?>
               <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

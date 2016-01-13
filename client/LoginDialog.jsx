@@ -80,7 +80,7 @@ LoginDialog = React.createClass({
       Accounts.callLoginMethod({
         methodArguments: [
         {
-          username: username,
+          username: username.toLowerCase(),
           password: password,
         }],
         validateResult: function (result) {
