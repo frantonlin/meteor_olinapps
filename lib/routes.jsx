@@ -11,7 +11,7 @@
 // });
 
 FlowRouter.route('/', {
-  name: 'home',
+  name: 'launchpad',
   action: function(params) {
     /* The key 'content' is now a function */
     ReactLayout.render(MainLayout, {
@@ -19,7 +19,7 @@ FlowRouter.route('/', {
         return <Header />;
       },
       content() {
-        return <HomePage />;
+        return <Launchpad />;
       }
     });
   }

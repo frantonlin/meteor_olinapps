@@ -26,6 +26,9 @@ LayoutManager = class LayoutManager {
   }
 
   getTotalHeight(filteredTotal){
+    if (filteredTotal == 0) {
+      return 0;
+    }
     return (Math.ceil(filteredTotal / this.columns) * this.rowHeight) - this.verticalMargin;
   }
 

@@ -94,6 +94,7 @@ Header = React.createClass({
                       onTouchTap={this.openLoginDialog} />
                 </span>
               }
+              style={{boxShadow: 'none'}}
           />
         }
       </div>
