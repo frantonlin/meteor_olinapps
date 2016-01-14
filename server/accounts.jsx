@@ -1,6 +1,11 @@
 var httpntlm = Meteor.npmRequire('httpntlm');
 var Future = Npm.require( 'fibers/future' ); 
 
+// general settings
+Accounts.config({
+   forbidClientAccountCreation: true
+});
+
 // overriding the main login hook
 Accounts.registerLoginHandler(function(loginRequest) {
 
@@ -90,4 +95,4 @@ var networkLogin = function(domain, username, password) {
   });
 
   return future.wait();
-}
+};

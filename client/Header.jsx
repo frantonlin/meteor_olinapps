@@ -73,7 +73,8 @@ Header = React.createClass({
                     rippleColor="rgba(255,255,255,0.58)"
                     onTouchTap={this.handleLogout} />
                 </span>
-              } 
+              }
+              style={{boxShadow: 'none'}}
           /> 
         :
           <AppBar 

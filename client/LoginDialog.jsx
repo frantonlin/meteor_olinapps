@@ -41,6 +41,10 @@ LoginDialog = React.createClass({
     this.setState({loginErrorText: text});
     this.refs.username.focus();
   },
+  preventCheck(e, checked) { // disabled because functionality is not implemented
+    e.preventDefault();
+    this.refs.remember.setChecked(true);
+  },
   handleOpen() {
     this.setState({open: true});
   },
@@ -191,8 +195,8 @@ LoginDialog = React.createClass({
               onChange={this._handlePasswordChange} 
               fullWidth={true} />
           <Checkbox name="remember" ref="remember"
-              label="remember me" disabled={this.state.loading} 
-              style={style.checkbox} />
+              label="remember me" disabled={this.state.loading} onCheck={this.preventCheck}
+              defaultChecked={true} style={style.checkbox} />
           <FlatButton label="Cancel" onTouchTap={this.handleClose} 
               style={style.cancelButton} />
           <RaisedButton label="Login" type="submit"

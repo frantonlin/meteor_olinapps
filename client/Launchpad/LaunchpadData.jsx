@@ -16,7 +16,8 @@ LaunchpadData = [
         'img': null,
         'name': 'CCO',
         'keywords': 'CCO Committee for Clubs and Organizations',
-        'url': 'http://cco.olin.edu/'
+        'url': 'http://cco.olin.edu/',
+        'networkLock': true
       },
       {
         'img': null,
